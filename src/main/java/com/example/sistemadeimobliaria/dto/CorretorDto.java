@@ -1,5 +1,6 @@
 package com.example.sistemadeimobliaria.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @Builder
 public class CorretorDto {
 
+    @Schema(description = "Nome do corretor", example = "Pedro", title = "Nome corretor" )
     private String nome;
 
     private String cpf;

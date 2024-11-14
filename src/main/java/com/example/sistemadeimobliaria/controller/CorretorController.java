@@ -1,9 +1,9 @@
 package com.example.sistemadeimobliaria.controller;
 
-import com.example.sistemadeimobliaria.dto.ClienteDto;
+import com.example.sistemadeimobliaria.dto.CorretorDto;
 import com.example.sistemadeimobliaria.exception.ResourceNotFoundException;
-import com.example.sistemadeimobliaria.model.Cliente;
-import com.example.sistemadeimobliaria.service.ClienteService;
+import com.example.sistemadeimobliaria.model.Corretor;
+import com.example.sistemadeimobliaria.service.CorretorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -19,27 +19,27 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/corretor")
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Cliente", description = "Operações para o cliente...")
-public class ClienteController {
+@Tag(name = "Corretor", description = "Operações para o Corretor" )
+public class CorretorController {
 
-    private final ClienteService clienteService;
+    private final CorretorService corretorService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Get all clientes from DB",
-            description = "Fetches all clientes from DB and return " +
+    @Operation(summary = "Get all corretor from DB",
+            description = "Fetches all corretor from DB and return " +
                     "in JSON Array"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful"),
             @ApiResponse(responseCode = "404", description = "not fund")
     })
-    public List<ClienteDto> getAllClientes() {
-        log.info("Buscando todas as clientes");
-        return clienteService.getAllClientes();
+    public List<CorretorDto> getAllCorretors() {
+        log.info("Buscando todas as corretors");
+        return corretorService.getAllCorretors();
     }
 
 
@@ -53,40 +53,37 @@ public class ClienteController {
             @ApiResponse(responseCode = "200", description = "successful"),
             @ApiResponse(responseCode = "404", description = "not fund")
     })
-    public ResponseEntity<ClienteDto> getClienteById(@PathVariable(name = "id") Long id) throws ResourceNotFoundException {
-        log.info("Buscando cliente por id: {}", id);
-        return ResponseEntity.ok().body(clienteService.getClienteById(id));
+    public ResponseEntity<CorretorDto> getCorretorById(@PathVariable(name = "id") Long id) throws ResourceNotFoundException {
+        log.info("Buscando corretor por id: {}", id);
+        return ResponseEntity.ok().body(corretorService.getCorretorById(id));
     }
 
     @PostMapping
     @Operation(summary = "Save cliente",
             description = "Save a cliente in database"
     )
-    public Cliente createCliente(@RequestBody ClienteDto clienteDto) throws ResourceNotFoundException {
-        log.info("Cadastro cliente: {}", clienteDto);
-        return clienteService.saveCliente(clienteDto);
+    public Corretor createCorretor(@RequestBody CorretorDto corretorDto) throws ResourceNotFoundException {
+        log.info("Cadastro corretor: {}", corretorDto);
+        return corretorService.saveCorretor(corretorDto);
     }
 
     @PatchMapping("/{id}")
     @Operation(summary = "Update cliente",
             description = "Update a cliente in database"
     )
-    public ResponseEntity<ClienteDto> updateCliente(@PathVariable(name = "id") Long id, @RequestBody ClienteDto clienteDto) throws ResourceNotFoundException {
-        log.info("Atualizando cliente: {}", clienteDto);
-        return ResponseEntity.ok(clienteService.clienteEdit(id, clienteDto));
+    public ResponseEntity<CorretorDto> updateCorretor(@PathVariable(name = "id") Long id, @RequestBody CorretorDto corretorDto) throws ResourceNotFoundException {
+        log.info("Atualizando corretor: {}", corretorDto);
+        return ResponseEntity.ok(corretorService.corretorEdit(id, corretorDto));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Remove cliente",
             description = "Remove a cliente in database"
     )
-    public Map<String, Boolean> deleteCliente(@PathVariable(name = "id") Long id) throws Exception {
-        log.info("Deletando cliente: {}", id);
+    public Map<String, Boolean> deleteCorretor(@PathVariable(name = "id") Long id) throws Exception {
+        log.info("Deletando corretor: {}", id);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", clienteService.deleteCliente(id));
+        response.put("deleted", corretorService.deleteCorretor(id));
         return response;
     }
-
-
 }
-

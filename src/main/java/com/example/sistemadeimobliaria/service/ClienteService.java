@@ -78,5 +78,15 @@ public class ClienteService {
                 .endereco(clienteEdited.getEndereco())
                 .dataCadastro(clienteEdited.getDataCadastro())
                 .build();
+        }
+
+        public boolean deleteCliente(Long id){
+        try {
+            Cliente cliente = clienteRepository.findById(id).orElseThrow();
+            clienteRepository.delete(cliente);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

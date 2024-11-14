@@ -1,10 +1,6 @@
 package com.example.sistemadeimobliaria.dto;
 
-import com.example.sistemadeimobliaria.model.Contrato;
-import com.example.sistemadeimobliaria.model.Proprietario;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
@@ -14,6 +10,7 @@ import lombok.*;
 @Builder
 public class ImovelDto {
 
+    @Schema(description = "Tipo do imóvel", example = "Casa", title = "Tipo do imóvel" )
     private String tipo;
 
     private String status;

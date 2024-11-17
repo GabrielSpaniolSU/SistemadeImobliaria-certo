@@ -60,7 +60,7 @@ public class ClienteController {
 
     @PostMapping
     @Operation(summary = "Save cliente",
-            description = "Save a cliente in database"
+            description = "Save cliente in database"
     )
     public Cliente createCliente(@RequestBody ClienteDto clienteDto) throws ResourceNotFoundException {
         log.info("Cadastro cliente: {}", clienteDto);

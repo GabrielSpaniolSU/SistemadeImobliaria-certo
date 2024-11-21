@@ -1,0 +1,97 @@
+# Aplicação Spring Boot
+
+Este repositório contém uma aplicação Spring Boot simples e um exemplo de configuração Docker para rodar o PostgreSQL. Abaixo estão as instruções para rodar a aplicação localmente e usando contêineres Docker.
+
+## Pré-requisitos
+
+Antes de começar, certifique-se de ter o seguinte instalado:
+
+- [JDK 11+](https://adoptopenjdk.net/) ou superior
+- [Maven](https://maven.apache.org/download.cgi) (se não usar o wrapper)
+- [Docker](https://www.docker.com/products/docker-desktop) (opcional, para rodar com contêiner)
+- [Git](https://git-scm.com/)
+
+## Rodando a aplicação localmente
+
+### 1. Clonando o repositório
+
+Primeiro, clone o repositório para sua máquina local:
+
+```bash
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio
+```
+
+### 2. Construindo o projeto
+
+Caso queira compilar o projeto com o Maven, execute o seguinte comando:
+
+```bash
+./mvnw clean install
+```
+
+Ou, se tiver o Maven instalado globalmente:
+
+```bash
+mvn clean install
+```
+
+Isso irá compilar a aplicação e gerar um arquivo JAR na pasta `target/`.
+
+### 3. Rodando a aplicação
+
+Para rodar a aplicação, execute o seguinte comando:
+
+```bash
+./mvnw spring-boot:run
+```
+
+Ou, se você tiver o Maven instalado globalmente:
+
+```bash
+mvn spring-boot:run
+```
+
+Alternativamente, você pode rodar a aplicação a partir do JAR gerado:
+
+```bash
+java -jar target/nome-do-arquivo.jar
+```
+
+A aplicação Spring Boot estará disponível no endereço `http://localhost:8080` por padrão.
+
+### Como rodar o PostgreSQL com Docker Compose:
+
+1. Inicie o Docker Compose com o seguinte comando:
+
+```bash
+docker-compose up
+```
+
+Isso irá iniciar o PostgreSQL na porta `8070` no host local.
+
+2. A aplicação Spring Boot pode então se conectar ao PostgreSQL usando as credenciais configuradas (usuário: `user`, senha: `password`, banco de dados: `mydatabase`).
+
+## Testando a aplicação
+
+A aplicação estará disponível em `http://localhost:8080`. Dependendo do que a aplicação faz, você pode testar os endpoints usando uma ferramenta como o [Postman](https://www.postman.com/) ou um simples `curl`.
+
+Exemplo de teste:
+
+```bash
+curl http://localhost:8080/api/cliente
+```
+
+## Contribuindo
+
+Se você deseja contribuir para este projeto, fique à vontade para criar um fork e abrir pull requests.
+
+1. Faça um fork do repositório.
+2. Crie uma branch para suas alterações (`git checkout -b minha-branch`).
+3. Faça commit das suas alterações (`git commit -am 'Adiciona nova funcionalidade'`).
+4. Envie para o branch (`git push origin minha-branch`).
+5. Crie uma nova pull request.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
